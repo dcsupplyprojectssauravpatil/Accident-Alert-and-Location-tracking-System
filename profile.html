@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Card - A Novel Eye-Gaze-Controlled Wheelchair Al</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #180835;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .form-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+    .form-container input, .form-container button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    .card {
+      display: flex;
+      flex-wrap: wrap;
+      background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+      border-radius: 30px;
+      width: 70%;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    .left-container {
+      background: linear-gradient(to right, #434343, #000000);
+      flex: 1;
+      max-width: 30%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      margin: 30px;
+      border-radius: 20px;
+    }
+    .right-container {
+      background: linear-gradient(to left, #434343, #000000);
+      flex: 1;
+      max-width: 65%;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 30px;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 10px;
+    }
+    h2, h3 { font-size: 24px; margin: 10px 0; text-align: center; 
+    }
+     h3 { font-size: 24px; margin: 10px 0; text-align: center; 
+      color: 	Navy; }
+    .gradienttext {
+      background-image: linear-gradient(to right, #ee00ff 0%, #fbff00 100%);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    p { font-size: 18px; color: aliceblue; margin-bottom: 20px; }
+    table { width: 100%; color: white; }
+    td { padding: 10px; }
+    td:first-child { font-weight: bold; width: 30%; }
+    .credit {
+      color: #fff;
+      text-align: center;
+      margin-top: 30px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .credit a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+    }
+    @media (max-width: 860px) {
+      .card { flex-direction: column; width: 90%; }
+      .left-container, .right-container { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  
+
+
+
+<div class="card">
+  <div class="left-container">
+    <img id="profilePhoto" src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__480.jpg" alt="Profile Image" />
+    <h2 class="gradienttext" id="displayName">Your Name</h2>
+    <p>Web Developer</p>
+  </div>
+
+  <div class="right-container">
+    <h3 class="gradienttext">Profile Details</h3>
+    <table>
+      <tr><td>Name :</td><td id="tdName">Your Name</td></tr>
+      <tr><td>Age :</td><td id="tdAge">--</td></tr>
+      <tr><td>Mobile :</td><td id="tdMobile">--</td></tr>
+      <tr><td>Email :</td><td id="tdEmail">--</td></tr>
+      <tr><td>Address :</td><td id="tdAddress">--</td></tr>
+    </table>
+
+    <div class="credit">
+      Made with <span style="color:tomato; font-size: 20px;">❤</span> by 
+      <a href="https://www.learningrobo.com/" target="_blank">Learning Robo</a>
+    </div>
+  </div>
+</div>
+<div class="form-container">
+  <h2>Enter User Details</h2>
+  <h3>Accident Alert and Location Tracking System</h3>
+  <input type="text" id="inputName" placeholder="Enter Name" required />
+  <input type="text" id="inputMobile" placeholder="Enter Mobile Number" required />
+  <input type="text" id="inputAge" placeholder="Enter Age" required />
+  <input type="email" id="inputEmail" placeholder="Enter Email" required />
+  <input type="text" id="inputAddress" placeholder="Enter Address" required />
+  <input type="file" id="inputPhoto" accept="image/*" required />
+  <button onclick="saveUser()">Submit</button>
+</div>
+<script>
+  function saveUser() {
+    const name = document.getElementById("inputName").value;
+    const mobile = document.getElementById("inputMobile").value;
+    const age = document.getElementById("inputAge").value;
+    const email = document.getElementById("inputEmail").value;
+    const address = document.getElementById("inputAddress").value;
+    const photoInput = document.getElementById("inputPhoto");
+    const photo = photoInput.files[0];
+
+    // Display text fields
+    document.getElementById("displayName").innerText = name;
+    document.getElementById("tdName").innerText = name;
+    document.getElementById("tdAge").innerText = age;
+    document.getElementById("tdMobile").innerText = mobile;
+    document.getElementById("tdEmail").innerText = email;
+    document.getElementById("tdAddress").innerText = address;
+
+    // Handle image file
+    if (photo) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById("profilePhoto").src = e.target.result;
+      };
+      reader.readAsDataURL(photo);
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<div style="margin-top: 20px;">
+  <input
+    type="tel"
+    id="phoneInput"
+    placeholder="Enter Phone Number (+91...)"
+    style="padding: 10px; border-radius: 8px; border: none; width: 220px;"
+  />
+  <button
+    onclick="sendSMS()"
+    style="padding: 10px 20px; margin-left: 10px; border: none; background-color: #3498db; color: white; border-radius: 8px; cursor: pointer;"
+  >
+    Send SMS
+  </button>
+</div>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accident Alert and Location Tracking System</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+    }
+
+    nav {
+      background: linear-gradient(135deg, #e7a363 0%, #ed8936 100%);
+      padding: 15px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      max-width: 1400px;
+    }
+
+    .navbar h1 {
+      color: white;
+      font-size: 24px;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      z-index: 900;
+    }
+
+    .sidebar button {
+      width: 100%;
+      background: none;
+      border: none;
+      color: #e2e8f0;
+      font-size: 16px;
+      padding: 12px 15px;
+      text-align: left;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar button:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 80px 40px;
+      width: calc(100% - 250px);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .upload-sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .upload-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .upload-container h2 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .upload-container p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .custom-file-upload {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .custom-file-upload:hover {
+      background: #45a049;
+      transform: scale(1.05);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 250px;
+      width: calc(100% - 250px);
+      height: 50px;
+      background: #1a202c;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 60px;
+      z-index: 999;
+    }
+
+    .rotating-circle {
+      width: 25px;
+      height: 25px;
+      border: 3px solid #4CAF50;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      margin-right: 20px;
+      animation: spin 1.2s linear infinite;
+    }
+
+    .scrolling-text {
+      color: #fff;
+      font-size: 14px;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 60px 20px 100px;
+      }
+
+      .footer {
+        left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <ul class="navbar">
+    <h1><i class="fas fa-car-crash"></i> Accident Alert and Location Tracking System</h1>
+  </ul>
+</nav>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <button onclick="location.href='./home.html'"><i class="fas fa-home"></i> Home</button>
+  <button onclick="location.href='./profile.html'"><i class="fas fa-user"></i> Profile</button>
+  <button onclick="location.href='./setting.html'"><i class="fas fa-cog"></i> Settings</button>
+  <button onclick="location.href='./history.html'"><i class="fas fa-history"></i> History</button>
+  <button onclick="location.href='./help.html'"><i class="fas fa-question-circle"></i> Help</button>
+</div>
+
+<!-- Main Section -->
+<main class="main-content">
+  <div class="upload-sections">
+    <div class="upload-container">
+      <h2>Send Live Location </h2>
+      <p>Live stream from ESP 8266.</p>
+      <button class="custom-file-upload" onclick="window.location.href='camera.html'">
+        <i class="fas fa-video"></i> Showing Location
+      </button>
+    </div>
+
+    <div class="upload-container">
+      <h2>🔗 Arduino Connectivity</h2>
+      <p>Check communication Arduino WIFi R-3 bord.</p>
+      <button class="custom-file-upload" onclick="window.location.href='connection.html'">
+        <i class="fas fa-microchip"></i> Check Connection
+      </button>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="rotating-circle"></div>
+  <div class="scrolling-text">
+    <marquee behavior="scroll" direction="left" scrollamount="6">
+      🔄 Accident Alert and Location Tracking System
+    </marquee>
+  </div>
+</footer>
+
+</body>
+</html>

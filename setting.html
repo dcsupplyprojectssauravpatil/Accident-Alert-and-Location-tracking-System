@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings - Smart Package System</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .sidebar button {
+      width: 100%;
+      background: none;
+      border: none;
+      color: #e2e8f0;
+      font-size: 16px;
+      padding: 12px 15px;
+      text-align: left;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar button:hover {
+      background-color: rgba(255,255,255,0.1);
+      transform: translateX(5px);
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #2d3748;
+      margin-bottom: 20px;
+    }
+
+    .settings-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      padding: 25px;
+      line-height: 1.8;
+      color: #333;
+      max-width: 700px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+      font-size: 15px;
+    }
+
+    .save-btn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .save-btn:hover {
+      background-color: #45a049;
+    }
+
+    .notification {
+      display: none;
+      margin-top: 20px;
+      background-color: #e6ffe6;
+      color: #2d662d;
+      padding: 12px 20px;
+      border-left: 6px solid #2ecc71;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <button onclick="location.href='./home.html'"><i class="fas fa-home"></i> Home</button>
+    <button onclick="location.href='./profile.html'"><i class="fas fa-profile"></i> Profile</button>
+    <button onclick="location.href='./setting.html'"><i class="fas fa-cog"></i> Settings</button>
+    <button onclick="location.href='./history.html'"><i class="fas fa-history"></i> History</button>
+    <button onclick="location.href='./help.html'"><i class="fas fa-question-circle"></i> Help</button>
+  </div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <h1><i class="fas fa-cog"></i> System Settings</h1>
+
+  <div class="settings-box">
+    <form id="settingsForm">
+      <label for="arduinoPort">ESP8266 Port</label>
+      <input type="text" id="arduinoPort" placeholder="e.g., COM3 or /dev/ttyUSB0">
+
+      <label for="baudRate">Baud Rate</label>
+      <select id="baudRate">
+        <option value="9600">9600</option>
+        <option value="115200">115200</option>
+        <option value="57600">57600</option>
+      </select>
+
+     
+
+      <label for="notificationToggle">Notification Alerts</label>
+      <select id="notificationToggle">
+        <option value="on">Enabled</option>
+        <option value="off">Disabled</option>
+      </select>
+
+      <label for="deviceName">Device Name</label>
+      <input type="text" id="deviceName" placeholder="e.g., SmartBox-01">
+
+      <label for="adminName">Administrator</label>
+      <input type="text" id="adminName" placeholder="Pushkar Shiv Patel" readonly>
+
+      <button type="button" class="save-btn" onclick="saveSettings()">Save Settings</button>
+      <div id="notification" class="notification">✅ Pushkar Shiv Patel successfully saved</div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function saveSettings() {
+    const notification = document.getElementById("notification");
+    notification.style.display = "block";
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 3000);
+  }
+
+  // Load profile name automatically
+  window.onload = function () {
+    const name = localStorage.getItem('profileName') || "Pushkar Shiv Patel";
+    document.getElementById("adminName").value = name;
+  }
+</script>
+
+</body>
+</html>
